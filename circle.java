@@ -1,66 +1,53 @@
-public class Book {
-    // ===== Thuộc tính =====
-    private String bookId;//mã sách
-    private String bookName;//tên scahs
-    private double price;//số tiền
-    private double discount;//giảm giá
+import java.util.Scanner;
 
-    // ===== Constructor 1: Chỉ có mã sách & tên sách =====
-    public Book(String bookId, String bookName) {
-        this.bookId = bookId;
-        this.bookName = bookName;
-        this.price = 0;
-        this.discount = 0;
+class Circle {
+    private double radius;
+
+    // Constructor có tham số
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
-    // ===== Constructor 2: Đủ cả 4 thông tin =====
-    public Book(String bookId, String bookName, double price, double discount) {
-        this.bookId = bookId;
-        this.bookName = bookName;
-        this.price = price;
-        this.discount = discount;
+    // Constructor mặc định
+    public Circle() {
+        this.radius = 1;
     }
 
-    // ===== Getter & Setter =====
-    public String getBookId() { return bookId; }
-    public void setBookId(String bookId) { this.bookId = bookId; }
+    // Getter & Setter
+    public double getRadius() { return radius; }
+    public void setRadius(double radius) { this.radius = radius; }
 
-    public String getBookName() { return bookName; }
-    public void setBookName(String bookName) { this.bookName = bookName; }
-
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
-
-    public double getDiscount() { return discount; }
-    public void setDiscount(double discount) { this.discount = discount; }
-
-    // ===== Tính giá bán =====
-    public double getSalePrice() {
-        return price - discount;
+    // Nhập bán kính
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ban kinh r: ");
+        this.radius = sc.nextDouble();
     }
 
-    // ===== Hiển thị thông tin =====
-    public void displayInfo() {
-        System.out.println("- Ma so sach: " + bookId);
-        System.out.println("- Ten sach: " + bookName);
-        System.out.println("- Gia sach: " + (long)price);
-        System.out.println("- Giam gia: " + (long)discount);
+    // Xuất thông tin
+    public void output() {
+        System.out.println("Thong tin hinh tron:");
+        System.out.println("Ban kinh r: " + radius);
     }
 
-    // ===== Hàm main để chạy kiểm tra =====
+    // Diện tích
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+
+    // Chu vi
+    public double getPerimeter() {
+        return 2 * Math.PI * radius;
+    }
+
     public static void main(String[] args) {
-        // Tạo sách bằng constructor đầy đủ
-        Book book = new Book("B1234", "Mindset", 70000, 7000);
+        Circle c1 = new Circle();  // mặc định
+        c1.output();
 
-        System.out.println("Thong tin quyen sach hien tai:");
-        book.displayInfo();
-        System.out.println("Gia ban cua sach: " + (long)book.getSalePrice());
-
-        // Thay đổi giảm giá
-        book.setDiscount(10000);
-
-        System.out.println("\nThong tin quyen sach sau khi cap nhat:");
-        book.displayInfo();
-        System.out.println("Gia ban moi cua sach: " + (long)book.getSalePrice());
+        Circle c2 = new Circle();
+        c2.input();
+        c2.output();
+        System.out.println("Dien tich: " + c2.getArea());
+        System.out.println("Chu vi: " + c2.getPerimeter());
     }
 }
